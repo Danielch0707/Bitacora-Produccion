@@ -6,49 +6,33 @@ from datetime import datetime
 from openpyxl.styles import Border, Side, Font, Alignment
 from openpyxl.utils import get_column_letter
 
-# ✅ SIEMPRE PRIMERO
+# ✅ CONFIG
 st.set_page_config(layout="wide")
 
 st.title("📊 Bitácora de Producción")
-archivo = st.file_uploader("Sube tu archivo Excel", type=["xlsx"])
-if archivo is not None:
 
-    df = pd.read_excel(archivo)
-
-    # ✅ TODO adentro
-    st.sidebar.subheader("📄 Plantilla Base")
-
-    columnas = [
-        "Item", "Cut_Mch", "Type", "Program", "Ext_Fam", "Int_Fam",
-        "Circuit", "KBNLoc", "Wire_Tube_Splice", "Cross_Reference",
-        "Description", "Length", "Term_A", "Joint_to_A", "Seal_A", "Strip_A",
-        "Term_B", "Joint_to_B", "Seal_B", "Strip_B", "Doubling", "Levels",
-        "Demanda", "Inventario"
-    ]
-
-    df_filtrado = df.copy()
-
-    st.dataframe(df_filtrado)
-
-else:
-    st.info("Por favor sube un archivo para comenzar")	
-	
 # =========================
-# ✅ CREAR PLANTILLA VACÍA
+# ✅ COLUMNAS BASE
+# =========================
+columnas = [
+    "Item", "Cut_Mch", "Type", "Program", "Ext_Fam", "Int_Fam",
+    "Circuit", "KBNLoc", "Wire_Tube_Splice", "Cross_Reference",
+    "Description", "Length", "Term_A", "Joint_to_A", "Seal_A", "Strip_A",
+    "Term_B", "Joint_to_B", "Seal_B", "Strip_B", "Doubling", "Levels",
+    "Demanda", "Inventario"
+]
+
+# =========================
+# ✅ PLANTILLA
 # =========================
 plantilla = pd.DataFrame(columns=columnas)
 
-# =========================
-# ✅ EXPORTAR A EXCEL
-# =========================
 buffer_plantilla = io.BytesIO()
 
 with pd.ExcelWriter(buffer_plantilla, engine="openpyxl") as writer:
     plantilla.to_excel(writer, index=False, sheet_name="Plantilla")
 
-# =========================
 # ✅ BOTÓN DESCARGA
-# =========================
 st.sidebar.download_button(
     label="⬇️ Descargar Plantilla",
     data=buffer_plantilla.getvalue(),
@@ -59,7 +43,6 @@ st.sidebar.download_button(
 # =========================
 # 📂 CARGA DE ARCHIVO
 # =========================
-
 st.sidebar.subheader("📂 Cargar archivo")
 
 archivo = st.sidebar.file_uploader(
@@ -67,9 +50,31 @@ archivo = st.sidebar.file_uploader(
     type=["xlsx"]
 )
 
-# ✅ leer archivo
+# =========================
+# ✅ FLUJO PRINCIPAL
+# =========================
 if archivo is not None:
-    df = pd.read_excel(archivo, engine="openpyxl")
+
+    df = pd.read_excel(archivo)
+
+    # ✅ LIMPIEZA
+    df = df.loc[:, ~df.columns.str.contains("Unnamed")]
+
+    # ✅ BASE
+    df_filtrado = df.copy()
+
+    # ✅ EJEMPLO CALCULO
+    df_filtrado["Faltante"] = (
+        df_filtrado["Demanda"] - df_filtrado["Inventario"]
+    ).clip(lower=0)
+
+    # ✅ MOSTRAR TABLA
+    st.subheader("📋 Datos cargados")
+    st.dataframe(df_filtrado, use_container_width=True)
+
+else:
+    st.warning("⚠️ Sube un archivo para comenzar")
+    st.stop()
 
     # ✅ CREAR COLUMNAS
     df["Faltante"] = (
