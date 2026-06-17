@@ -15,9 +15,6 @@ if archivo is not None:
 
     df = pd.read_excel(archivo)
 
-# ✅ CONFIGURACIÓN GENERAL
-st.set_page_config(layout="wide")
-
 import io
 import pandas as pd
 import streamlit as st
