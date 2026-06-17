@@ -15,18 +15,24 @@ if archivo is not None:
 
     df = pd.read_excel(archivo)
 
-# =========================
-# ✅ NUEVA ESTRUCTURA COMPLETA
-# =========================
-st.sidebar.subheader("📄 Plantilla Base")
-columnas = [
-    "Item", "Cut_Mch", "Type", "Program", "Ext_Fam", "Int_Fam",
-    "Circuit", "KBNLoc", "Wire_Tube_Splice", "Cross_Reference",
-    "Description", "Length", "Term_A", "Joint_to_A", "Seal_A", "Strip_A",
-    "Term_B", "Joint_to_B", "Seal_B", "Strip_B", "Doubling", "Levels",
-    "Demanda", "Inventario"  # ✅ AL FINAL
-]
+    # ✅ TODO adentro
+    st.sidebar.subheader("📄 Plantilla Base")
 
+    columnas = [
+        "Item", "Cut_Mch", "Type", "Program", "Ext_Fam", "Int_Fam",
+        "Circuit", "KBNLoc", "Wire_Tube_Splice", "Cross_Reference",
+        "Description", "Length", "Term_A", "Joint_to_A", "Seal_A", "Strip_A",
+        "Term_B", "Joint_to_B", "Seal_B", "Strip_B", "Doubling", "Levels",
+        "Demanda", "Inventario"
+    ]
+
+    df_filtrado = df.copy()
+
+    st.dataframe(df_filtrado)
+
+else:
+    st.info("Por favor sube un archivo para comenzar")	
+	
 # =========================
 # ✅ CREAR PLANTILLA VACÍA
 # =========================
