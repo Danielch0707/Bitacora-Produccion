@@ -1,10 +1,15 @@
 import streamlit as st
 import pandas as pd
 import plotly.express as px
-import io   # ✅ ESTE FALTABA
+import io
 from datetime import datetime
 from openpyxl.styles import Border, Side, Font, Alignment
 from openpyxl.utils import get_column_letter
+
+# ✅ AQUÍ VA
+st.title("📊 Bitácora de Producción")
+
+archivo = st.file_uploader("Sube tu archivo Excel", type=["xlsx"])
 
 
 # ✅ CONFIGURACIÓN GENERAL
