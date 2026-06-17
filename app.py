@@ -6,11 +6,12 @@ from datetime import datetime
 from openpyxl.styles import Border, Side, Font, Alignment
 from openpyxl.utils import get_column_letter
 
-# ✅ AQUÍ VA
+# ✅ SIEMPRE PRIMERO
+st.set_page_config(layout="wide")
+
 st.title("📊 Bitácora de Producción")
 
 archivo = st.file_uploader("Sube tu archivo Excel", type=["xlsx"])
-
 
 # ✅ CONFIGURACIÓN GENERAL
 st.set_page_config(layout="wide")
