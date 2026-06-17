@@ -10,7 +10,9 @@ from openpyxl.utils import get_column_letter
 st.set_page_config(layout="wide")
 
 st.title("📊 Bitácora de Producción")
+if archivo is not None:
 
+    df = pd.read_excel(archivo)
 archivo = st.file_uploader("Sube tu archivo Excel", type=["xlsx"])
 
 # ✅ CONFIGURACIÓN GENERAL
