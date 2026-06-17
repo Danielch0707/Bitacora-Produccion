@@ -15,10 +15,6 @@ if archivo is not None:
 
     df = pd.read_excel(archivo)
 
-import io
-import pandas as pd
-import streamlit as st
-
 st.sidebar.subheader("📄 Plantilla Base")
 
 # =========================
