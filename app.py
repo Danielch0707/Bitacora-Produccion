@@ -15,11 +15,10 @@ if archivo is not None:
 
     df = pd.read_excel(archivo)
 
-st.sidebar.subheader("📄 Plantilla Base")
-
 # =========================
 # ✅ NUEVA ESTRUCTURA COMPLETA
 # =========================
+st.sidebar.subheader("📄 Plantilla Base")
 columnas = [
     "Item", "Cut_Mch", "Type", "Program", "Ext_Fam", "Int_Fam",
     "Circuit", "KBNLoc", "Wire_Tube_Splice", "Cross_Reference",
