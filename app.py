@@ -87,8 +87,6 @@ else:
     st.warning("⚠️ Sube un archivo para comenzar")
     st.stop()
 
-
-	
 	# ✅ ESTILO OSCURO INDUSTRIAL
 	st.markdown(
 	    """
