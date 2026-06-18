@@ -109,15 +109,20 @@ if archivo is not None:
     </div>
     """, unsafe_allow_html=True)
 
-    import time
+    # import time  ← opcional dejar comentado
+
+if archivo is not None:
+    
+    # tu código aquí
+    
+    # comenta el modo planta por ahora
+    # if st.sidebar.checkbox("📺 Modo Planta en Vivo"):
+    #     time.sleep(5)
+    #     st.rerun()
 
 else:
     st.warning("⚠️ Sube un archivo para comenzar")
-    st.stop()	
-	
-	if st.sidebar.checkbox("📺 Modo Planta en Vivo"):
-	    time.sleep(5)
-	    st.rerun()
+    st.stop()
 	
 	# ✅ PANEL LATERAL (TIPO SOFTWARE)
 	st.sidebar.title("🔧 Filtros")
