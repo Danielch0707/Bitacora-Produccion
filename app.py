@@ -80,22 +80,19 @@ if archivo is not None:
     df["Qty_Run"] = df["Faltante"]
 
     df["Prioridad"] = df["Faltante"].apply(
-        lambda x: 1 if x > 500 else (2 if x > 0 else 3)
-
-else:
-    st.warning("⚠️ Sube un archivo para comenzar")
-    st.stop()
+    lambda x: 1 if x > 500 else (2 if x > 0 else 3)
+)
 
 	# ✅ ESTILO OSCURO INDUSTRIAL
-	st.markdown(
-	    """
-	    <style>
-	    .main {background-color: #0e1117; color: white;}
-	    h1, h2, h3 {color: white;}
-	    </style>
-	    """,
-	    unsafe_allow_html=True
-	)
+    st.markdown(
+        """
+        <style>
+        .main {background-color: #0e1117; color: white;}
+        h1, h2, h3 {color: white;}
+        </style>
+        """,
+        unsafe_allow_html=True
+    )
 	
 	# ✅ CARGA DE DATOS
 	df = df.loc[:, ~df.columns.str.contains("Unnamed")]
@@ -115,7 +112,11 @@ else:
 	</div>
 	""", unsafe_allow_html=True)
 	
-	import time
+	import time	
+		
+else:
+    st.warning("⚠️ Sube un archivo para comenzar")
+    st.stop()
 	
 	if st.sidebar.checkbox("📺 Modo Planta en Vivo"):
 	    time.sleep(5)
