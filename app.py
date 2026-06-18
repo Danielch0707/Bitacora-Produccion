@@ -768,9 +768,9 @@ else:
 	# ✅ SETUP
 	# =========================
 	bitacora["SETUP"] = bitacora.apply(
-	    lambda row: "-".join(sorted([str(row["Term_A"]), str(row["Term_B"])])),
-	    axis=1
-	)
+    lambda row: "-".join(sorted([str(row["Term_A"]), str(row["Term_B"])])),
+    axis=1
+)
 	
 	# =========================
 	# ✅ ORDEN
