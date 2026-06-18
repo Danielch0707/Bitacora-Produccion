@@ -81,7 +81,6 @@ if archivo is not None:
 
     df["Prioridad"] = df["Faltante"].apply(
         lambda x: 1 if x > 500 else (2 if x > 0 else 3)
-    )
 
 else:
     st.warning("⚠️ Sube un archivo para comenzar")
@@ -148,8 +147,7 @@ else:
 	
 	# ✅ prioridad
 	base_df["Prioridad"] = base_df["Faltante"].apply(
-	    lambda x: 1 if x > 500 else (2 if x > 0 else 3)
-	)
+	lambda x: 1 if x > 500 else (2 if x > 0 else 3)
 	
 	# ✅ KPIs TIPO INDUSTRIAL
 	
