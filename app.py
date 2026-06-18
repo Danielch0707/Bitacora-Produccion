@@ -77,9 +77,9 @@ if archivo is not None:
 
     df["Qty_Run"] = df["Faltante"]
 
-    df["Prioridad"] = df["Faltante"].apply(
-        lambda x: 1 if x > 500 else (2 if x > 0 else 3)
-    )
+    df["Prioridad"] =df[Faltante"].apply(
+		lambda x: 1 if x > 500 else (2 if x > 0 else 3)
+	)	
 
     # ✅ ESTILO ✅ (AHORA DENTRO DEL IF)
     st.markdown(
