@@ -1,5 +1,3 @@
-import streamlit as stimportst.title("✅ FUNCIONA 100%")
+import streamlit as st
 
-# trigger rebuild
-
-
+st.title("✅ FUNCIONA 100%")
