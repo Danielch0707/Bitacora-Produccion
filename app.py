@@ -63,16 +63,14 @@ if archivo is not None:
     # ✅ BASE
     df_filtrado = df.copy()
 
-    # ✅ EJEMPLO CALCULO
+    # ✅ CALCULO
     df_filtrado["Faltante"] = (
         df_filtrado["Demanda"] - df_filtrado["Inventario"]
     ).clip(lower=0)
 
-    # ✅ MOSTRAR TABLA
     st.subheader("📋 Datos cargados")
     st.dataframe(df_filtrado, use_container_width=True)
 
-    # ✅ CREAR COLUMNAS
     df["Faltante"] = (
         df["Demanda"] - df["Inventario"]
     ).clip(lower=0)
@@ -80,10 +78,10 @@ if archivo is not None:
     df["Qty_Run"] = df["Faltante"]
 
     df["Prioridad"] = df["Faltante"].apply(
-    lambda x: 1 if x > 500 else (2 if x > 0 else 3)
-)
+        lambda x: 1 if x > 500 else (2 if x > 0 else 3)
+    )
 
-	# ✅ ESTILO OSCURO INDUSTRIAL
+    # ✅ ESTILO ✅ (AHORA DENTRO DEL IF)
     st.markdown(
         """
         <style>
@@ -93,30 +91,29 @@ if archivo is not None:
         """,
         unsafe_allow_html=True
     )
-	
-	# ✅ CARGA DE DATOS
-	df = df.loc[:, ~df.columns.str.contains("Unnamed")]
-	
-	st.markdown("""
-	<style>
-	.titulo-principal {
-	    font-size: 60px;
-	    font-weight: 800;
-	    margin-top: -30px;
-	    margin-bottom: 10px;
-	}
-	</style>
-	
-	<div class="titulo-principal">
-	🏭 SISTEMA DE PRODUCCIÓN  CORTE
-	</div>
-	""", unsafe_allow_html=True)
-	
-	import time	
-		
+
+    df = df.loc[:, ~df.columns.str.contains("Unnamed")]
+
+    st.markdown("""
+    <style>
+    .titulo-principal {
+        font-size: 60px;
+        font-weight: 800;
+        margin-top: -30px;
+        margin-bottom: 10px;
+    }
+    </style>
+
+    <div class="titulo-principal">
+    🏭 SISTEMA DE PRODUCCIÓN CORTE
+    </div>
+    """, unsafe_allow_html=True)
+
+    import time
+
 else:
     st.warning("⚠️ Sube un archivo para comenzar")
-    st.stop()
+    st.stop()	
 	
 	if st.sidebar.checkbox("📺 Modo Planta en Vivo"):
 	    time.sleep(5)
